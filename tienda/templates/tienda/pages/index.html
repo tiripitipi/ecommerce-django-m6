@@ -1,0 +1,26 @@
+{% extends "tienda/base.html" %}
+
+{% block title %}El Rincón del Tenis — Catálogo{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+    <h1 class="mb-1 fw-bold text-acento">Catálogo de productos</h1>
+    <p class="text-secondary mb-4">Todo lo que necesitas para jugar tenis.</p>
+
+    <div class="row g-4">
+        {% for producto in productos %}
+        <div class="col-12 col-sm-6 col-lg-4">
+            <div class="card h-100 bg-dark border-secondary">
+                <div class="card-body">
+                    <span class="badge mb-2 badge-categoria">{{ producto.categoria }}</span>
+                    <h2 class="card-title text-light fs-5">{{ producto.nombre }}</h2>
+                    <p class="card-text precio-producto fw-bold">
+                        ${{ producto.precio|floatformat:0 }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock main %}

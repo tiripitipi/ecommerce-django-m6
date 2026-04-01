@@ -1,0 +1,46 @@
+/* Variables de color — paleta El Rincón del Tenis */
+:root {
+    --verde-oscuro: #1a3a2a;
+    --verde-medio: #2d5a3d;
+    --verde-acento: #4a8c5c;
+    --amarillo-pelota: #c8ff00;
+    --negro: #0d0d0d;
+}
+
+/* Navbar */
+.navbar-rincón {
+    background-color: var(--verde-oscuro);
+}
+
+.navbar-brand {
+    color: var(--amarillo-pelota) !important;
+}
+
+/* Botón principal */
+.btn-acento {
+    background-color: var(--verde-acento);
+    color: white;
+    border: none;
+}
+
+.btn-acento:hover {
+    background-color: var(--verde-medio);
+    color: white;
+}
+
+/* Precio en las tarjetas */
+.precio-producto {
+    color: var(--amarillo-pelota);
+    font-size: 1.1rem;
+}
+
+/* Badge de categoría */
+.badge-categoria {
+    background-color: var(--verde-medio);
+    color: white;
+}
+
+/* Color de texto acento */
+.text-acento {
+    color: var(--verde-acento);
+}

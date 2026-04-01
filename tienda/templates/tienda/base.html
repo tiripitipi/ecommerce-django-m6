@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load django_bootstrap5 %}
+    {% bootstrap_css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tienda/css/styles.css' %}">
+    <title>{% block title %}El Rincón del Tenis{% endblock title %}</title>
+</head>
+<body data-bs-theme="dark">
+
+    <header>
+        {% block header %}
+        {% include "tienda/layouts/navbar.html" %}
+        {% endblock header %}
+    </header>
+
+    <main>
+        {% include "tienda/components/messages.html" %}
+        {% block main %}{% endblock main %}
+    </main>
+
+    <footer>
+        {% block footer %}
+        {% include "tienda/layouts/footer.html" %}
+        {% endblock footer %}
+    </footer>
+
+    {% bootstrap_javascript %}
+    <script src="{% static 'tienda/js/script.js' %}"></script>
+
+</body>
+</html>
