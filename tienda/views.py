@@ -1,4 +1,9 @@
-from django.shortcuts import render
+from django.contrib import messages
+from django.contrib.auth import login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import AuthenticationForm
+from django.shortcuts import redirect, render
+from django.urls import reverse
 
 # Catálogo de productos — los mismos del Rincón del Tenis desde el módulo 2
 PRODUCTOS = [
@@ -19,15 +24,36 @@ def index(request):
 
 
 def login_view(request):
-    pass
+    """Vista de inicio de sesión usando AuthenticationForm de Django."""
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            # form.get_user() devuelve el usuario validado por el formulario
+            login(request, form.get_user())
+            message = f'Bienvenido, {form.get_user().username}. ¡Buena sesión!'
+            messages.success(request, message)
+            url = reverse('tienda:index')
+            return redirect(url)
+        else:
+            messages.error(request, 'Nombre de usuario o contraseña incorrectos.')
+    else:
+        form = AuthenticationForm(request)
+
+    template = 'tienda/pages/login.html'
+    context = {'form': form}
+    return render(request, template, context)
 
 
 def register(request):
     pass
 
-
+@login_required
 def logout_view(request):
-    pass
+    """Cierra la sesión del usuario autenticado."""
+    logout(request)
+    messages.success(request, 'Has cerrado sesión correctamente.')
+    url = reverse('tienda:login')
+    return redirect(url)
 
 
 def panel(request):
