@@ -1,0 +1,23 @@
+{% extends "tienda/base.html" %}
+{% load django_bootstrap5 %}
+
+{% block title %}Registrarse — El Rincón del Tenis{% endblock title %}
+
+{% block main %}
+<div class="container d-flex justify-content-center mt-5">
+    <div class="card bg-dark border-secondary text-light p-4" style="width: 100%; max-width: 400px;">
+        <h1 class="fs-4 mb-4 text-center">Crear cuenta</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <div class="d-grid mt-3">
+                <button type="submit" class="btn btn-acento">Registrarse</button>
+            </div>
+        </form>
+        <p class="text-center text-secondary mt-3 small">
+            ¿Ya tienes cuenta?
+            <a href="{% url 'tienda:login' %}" class="text-light">Iniciar sesión</a>
+        </p>
+    </div>
+</div>
+{% endblock main %}

@@ -1,3 +1,4 @@
+from .forms import RegisterForm
 from django.contrib import messages
 from django.contrib.auth import login, logout
 from django.contrib.auth.decorators import login_required
@@ -45,7 +46,23 @@ def login_view(request):
 
 
 def register(request):
-    pass
+    """Vista de registro de nuevo usuario."""
+    if request.method == 'POST':
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            message = f'Usuario {user.username} registrado correctamente. Ya puedes iniciar sesión.'
+            messages.success(request, message)
+            url = reverse('tienda:login')
+            return redirect(url)
+        else:
+            messages.error(request, 'Por favor corrige los errores del formulario.')
+    else:
+        form = RegisterForm()
+
+    template = 'tienda/pages/register.html'
+    context = {'form': form}
+    return render(request, template, context)
 
 @login_required
 def logout_view(request):
