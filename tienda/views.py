@@ -73,9 +73,17 @@ def logout_view(request):
     return redirect(url)
 
 
+@login_required
 def panel(request):
-    pass
+    """Panel del usuario — vista protegida, solo para usuarios autenticados."""
+    template = 'tienda/pages/panel.html'
+    context = {'user': request.user}
+    return render(request, template, context)
 
 
+@login_required
 def productos_admin(request):
-    pass
+    """Gestión de productos — vista protegida, solo visualización."""
+    template = 'tienda/pages/productos_admin.html'
+    context = {'productos': PRODUCTOS}
+    return render(request, template, context)

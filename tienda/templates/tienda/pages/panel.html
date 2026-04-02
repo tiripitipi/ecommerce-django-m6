@@ -1,0 +1,40 @@
+{% extends "tienda/base.html" %}
+
+{% block title %}Mi panel — El Rincón del Tenis{% endblock title %}
+
+{% block main %}
+<div class="container mt-5">
+    <h1 class="fw-bold text-acento mb-1">Mi panel</h1>
+    <p class="text-secondary mb-4">Bienvenido de vuelta, {{ user.username }}.</p>
+
+    <div class="row g-4">
+        <div class="col-12 col-md-6">
+            <div class="card bg-dark border-secondary h-100">
+                <div class="card-body">
+                    <h2 class="fs-5 text-light mb-3">Información de la cuenta</h2>
+                    <ul class="list-unstyled text-secondary">
+                        <li><span class="text-light">Usuario:</span> {{ user.username }}</li>
+                        <li><span class="text-light">Email:</span> {{ user.email|default:"No registrado" }}</li>
+                        <li><span class="text-light">Miembro desde:</span> {{ user.date_joined|date:"d/m/Y" }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="card bg-dark border-secondary h-100">
+                <div class="card-body">
+                    <h2 class="fs-5 text-light mb-3">Accesos rápidos</h2>
+                    <div class="d-grid gap-2">
+                        <a href="{% url 'tienda:productos_admin' %}" class="btn btn-acento">
+                            Ver gestión de productos
+                        </a>
+                        <a href="{% url 'tienda:index' %}" class="btn btn-outline-secondary">
+                            Volver al catálogo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock main %}
